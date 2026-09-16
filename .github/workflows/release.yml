@@ -1,0 +1,64 @@
+name: Create Release v1.1.1
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v1.1.1'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.1.1
+          release_name: APK Store v1.1.1
+          body: |
+            # APK Store v1.1.1
+            
+            ## Release Notes
+            
+            ### ✨ New Features
+            - Initial release of APK Store website
+            - Beautiful gradient UI with purple theme
+            - Search functionality to filter apps
+            - Responsive design for mobile and desktop
+            - "Free" pricing display (replaces $0)
+            
+            ### 🎨 UI/UX Improvements
+            - Smooth hover animations on app cards
+            - Mobile-optimized layout
+            - Clean and modern card-based design
+            - Easy-to-use search bar
+            
+            ### 🔧 Technical Details
+            - Built with HTML, CSS, and vanilla JavaScript
+            - Dynamic app loading from JSON
+            - Cross-browser compatible
+            - Lightweight and fast
+            
+            ### 📦 What's Included
+            - index.html - Main website
+            - style.css - Styling and animations
+            - script.js - App logic and search
+            - apps.json - Sample APK data
+            
+            ### 🚀 How to Use
+            1. Clone the repository
+            2. Open `index.html` in a browser
+            3. View all free APK apps
+            4. Use search to find specific apps
+            5. Click download to get started
+          draft: false
+          prerelease: false
+      
+      - name: Release created successfully
+        run: echo "✅ APK Store v1.1.1 released!"
